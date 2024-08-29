@@ -1,9 +1,25 @@
-const proxyUrl = 'http://localhost:3000/proxy';
+// Function to extract text content from HTML
+function extractTextContent(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+}
 
+// Function to display the extracted data on the webpage
+function displayData(text) {
+    const contentDiv = document.getElementById('content');
+    const cleanedText = text; // Consider implementing text cleaning here
+    contentDiv.innerHTML = `
+        <h2>Data from the proxy server</h2>
+        <p>${cleanedText}</p>
+    `;
+}
+
+// Function to fetch data from the proxy server
 async function fetchData() {
     try {
         const response = await fetch(proxyUrl, {
-            method: 'GET',
+            method: 'GET', 
             headers: {
                 'Content-Type': 'text/html'
             }
@@ -21,29 +37,5 @@ async function fetchData() {
     }
 }
 
-function extractTextContent(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    return doc.body.textContent || "";
-}
-
-function displayData(text) {
-    const contentDiv = document.getElementById('content');
-    let trashData = escapeHtml(text)
-    const cleanedText = trashData.replace(/[^a-zA-Z\s.,!?']/g, ' ');
-    contentDiv.innerHTML = `
-        <h2>Data from the proxy server</h2>
-        <p>${cleanedText}</p>
-    `;
-}
-
-function escapeHtml(text) {
-    return text.replace(/&/g, '&amp;')
-               .replace(/</g, '&lt;')
-               .replace(/>/g, '&gt;')
-               .replace(/"/g, '&quot;')
-               .replace(/'/g, '&#039;');
-}
-
+// Call the fetchData function to initiate the data fetching process
 fetchData();
-
