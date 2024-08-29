@@ -1,0 +1,23 @@
+{
+  "name": "geni",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetchData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "domutils": "^3.1.0",
+    "express": "^4.19.2",
+    "htmlparser2": "^9.1.0",
+    "node-fetch": "^3.3.2",
+    "node-html-parser": "^6.1.13",
+    "puppeteer": "^23.0.1"
+  }
+}
